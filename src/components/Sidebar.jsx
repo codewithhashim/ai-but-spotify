@@ -98,7 +98,7 @@ const Sidebar = () => {
                     ) : (
                         <div className='flex flex-col gap-3'>
                             <SignInButton mode='modal'>
-                                <button className='px-4 py-2 bg-green-600 rounded-full hover:bg-green-700'>Sign In</button>
+                                <button className='px-4 py-2 bg-pink-100 rounded-full hover:bg-pink-200 text-black'>Sign In</button>
                             </SignInButton>
                             <SignUpButton mode='modal'>
                                 <button className='px-4 py-2 border border-gray-600 rounded-full hover:bg-gray-800'>Create Account</button>
