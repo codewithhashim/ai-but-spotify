@@ -54,8 +54,8 @@ const DisplaySong = () => {
     <>
       <Navbar />
       <div className="mt-10 flex gap-8 flex-col md:flex-row md:items-end">
-        <div className="w-48 h-48 bg-gradient-to-br from-purple-500 to-pink-500 rounded flex items-center justify-center">
-          <img className="w-full h-full object-cover rounded" src={song.image} alt={song.name} />
+        <div className="w-48 h-48  rounded flex items-center justify-center">
+          <img className="w-full h-full object-cover rounded-full" src={song.image_url} alt={song.name} />
         </div>
         <div className="flex flex-col">
           <p className="text-sm text-gray-300 uppercase tracking-wider">Song</p>
@@ -104,9 +104,9 @@ const DisplaySong = () => {
                         className="w-full text-left px-3 py-2 hover:bg-[#3e3e3e] rounded text-white text-sm flex items-center gap-3"
                       >
                         <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded flex items-center justify-center flex-shrink-0">
-                          {playlist.songs.length > 0 ? (
+                          {playlist.songs && playlist.songs.length > 0 && playlist.songs[0].image_url ? (
                             <img 
-                              src={playlist.songs[0].image} 
+                              src={playlist.songs[0].image_url} 
                               alt={playlist.name}
                               className="w-full h-full object-cover rounded"
                             />
@@ -121,7 +121,7 @@ const DisplaySong = () => {
                         <div className="flex-1 min-w-0">
                           <p className="truncate">{playlist.name}</p>
                           <p className="text-gray-400 text-xs truncate">
-                            {playlist.songs.length} {playlist.songs.length === 1 ? 'song' : 'songs'}
+                            {playlist.songs?.length || 0} {playlist.songs?.length === 1 ? 'song' : 'songs'}
                           </p>
                         </div>
                       </button>

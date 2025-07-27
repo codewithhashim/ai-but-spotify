@@ -11,16 +11,38 @@ import SearchBar from './SearchBar';
 const Sidebar = () => {
     const navigate = useNavigate();
     const { playlists } = useContext(PlaylistContext);
-    const { isSignedIn } = useUser();
+    const { isSignedIn, user } = useUser();
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleCreatePlaylist = () => {
-        if (!isSignedIn) {
-            toast.error('Please sign in to create playlists');
-            return;
-        }
         setIsModalOpen(true);
     };
+
+    const getInitials = (user) => {
+        if (!user) return '';
+
+        // Try to construct name from fullName or firstName/lastName
+        let name = user.fullName;
+        if (!name && user.firstName && user.lastName) {
+            name = `${user.firstName} ${user.lastName}`;
+        }
+        
+        // Generate initials from name
+        if (name) {
+            const nameParts = name.split(' ').filter(Boolean);
+            if (nameParts.length === 0) return '';
+            const firstInitial = nameParts[0][0];
+            const lastInitial = nameParts.length > 1 ? nameParts[nameParts.length - 1][0] : '';
+            return `${firstInitial}${lastInitial}`.toUpperCase();
+        }
+
+        // Fallback to email initial
+        if (user.primaryEmailAddress) {
+            return user.primaryEmailAddress.emailAddress[0].toUpperCase();
+        }
+        
+        return 'U'; // Final fallback
+    }
 
     return (
         <>
@@ -40,24 +62,38 @@ const Sidebar = () => {
                 <div className='bg-[#121212] p-4 rounded mb-2'>
                     {isSignedIn ? (
                         <div className='flex items-center justify-between'>
-                            <div className='flex items-center gap-3'>
-                                <div className='w-8 h-8 bg-green-500 rounded-full flex items-center justify-center'>
-                                    <span className='text-black font-bold text-sm'>U</span>
-                                </div>
-                                <div className='flex flex-col'>
-                                    <span className='text-sm font-medium'>Profile</span>
-                                    <span className='text-xs text-gray-400'>Signed In</span>
-                                </div>
+                            <div className='flex items-center gap-4'>
+                                {isSignedIn && user ? (
+                                    <div className='flex items-center gap-3'>
+                                        <div className='w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center'>
+                                            <span className='text-black font-bold text-sm'>{getInitials(user)}</span>
+                                        </div>
+                                        <div className='flex flex-col'>
+                                            <span className='text-sm font-medium'>Profile</span>
+                                            <span className='text-xs text-gray-400'>Signed In</span>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className='flex items-center gap-3'>
+                                        <div className='w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center'>
+                                            <span className='text-black font-bold text-sm'>U</span>
+                                        </div>
+                                        <div className='flex flex-col'>
+                                            <span className='text-sm font-medium'>Profile</span>
+                                            <span className='text-xs text-gray-400'>Signed In</span>
+                                        </div>
+                                    </div>
+                                )}
+                                <UserButton
+                                    appearance={{
+                                        elements: {
+                                            avatarBox: 'w-8 h-8',
+                                            userButtonPopoverCard: 'bg-gray-900 border-gray-700',
+                                            userButtonPopoverActionButton: 'text-white hover:bg-gray-800',
+                                        },
+                                    }}
+                                />
                             </div>
-                            <UserButton
-                                appearance={{
-                                    elements: {
-                                        avatarBox: 'w-8 h-8',
-                                        userButtonPopoverCard: 'bg-gray-900 border-gray-700',
-                                        userButtonPopoverActionButton: 'text-white hover:bg-gray-800',
-                                    },
-                                }}
-                            />
                         </div>
                     ) : (
                         <div className='flex flex-col gap-3'>
