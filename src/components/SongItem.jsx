@@ -52,7 +52,7 @@ const SongItem = ({name,image,desc,id}) => {
                             <div className={`transition-opacity duration-200 flex gap-2 ${isPlaying ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
                                 <button
                                     onClick={handlePlayClick}
-                                    className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+                                    className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
                                 >
                                     {isPlaying ? (
                                         <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
