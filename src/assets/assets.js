@@ -24,28 +24,10 @@ import arrow_left from './left_arrow.png'
 import spotify_logo from './spotify_logo.png'
 import clock_icon from './clock_icon.png'
 
-// Import album/song images
-import img1 from './img1.jpg'
-import img2 from './img2.jpg'
-import img3 from './img3.jpg'
-import img4 from './img4.jpg'
-import img5 from './img5.jpg'
-import img6 from './img6.jpg'
-import img7 from './img7.jpg'
-import img8 from './img8.jpg'
-import img9 from './img9.jpg'
-import img10 from './img10.jpg'
-import img11 from './img11.jpg'
-import img12 from './img12.jpg'
-import img13 from './img13.jpg'
-import img14 from './img14.jpg'
-import img15 from './img15.jpg'
-import img16 from './img16.jpg'
+// Remove image and song imports as we'll use string URLs
+// Keep icon imports
 
-// Import audio files
-import song1 from  './song1.mp3'
-import song2 from  './song2.mp3'
-import song3 from  './song3.mp3'
+const STORAGE_BASE_URL = 'https://bcsrmcscwghqfsldbgpy.supabase.co/storage/v1/object/public/ahmusic';
 
 export const assets = {
     bell_icon,
@@ -78,7 +60,7 @@ export const albumsData = [
     {   
         id:0,
         name: "Top 50 Global",
-        image: img8,
+        image: `${STORAGE_BASE_URL}/public/album-images/img8.jpg`, // Adjust path if needed
         desc:"Your weekly update of the most played tracks",
         bgColor:"#2a4365",
         tags: ["music"]
@@ -86,7 +68,7 @@ export const albumsData = [
     {   
         id:1,
         name: "Top 50 India",
-        image: img9,
+        image: `${STORAGE_BASE_URL}/public/album-images/img9.jpg`,
         desc:"Your weekly update of the most played tracks",
         bgColor:"#22543d",
         tags: ["music"]
@@ -94,7 +76,7 @@ export const albumsData = [
     {   
         id:2,
         name: "Trending India",
-        image: img10,
+        image: `${STORAGE_BASE_URL}/public/album-images/img10.jpg`,
         desc:"Your weekly update of the most played tracks",
         bgColor:"#742a2a",
         tags: ["music"]
@@ -102,7 +84,7 @@ export const albumsData = [
     {   
         id:3,
         name: "Trending Global",
-        image: img16,
+        image: `${STORAGE_BASE_URL}/public/album-images/img16.jpg`,
         desc:"Your weekly update of the most played tracks",
         bgColor:"#44337a",
         tags: ["music"]
@@ -110,7 +92,7 @@ export const albumsData = [
     {   
         id:4,
         name: "Mega Hits,",
-        image: img11,
+        image: `${STORAGE_BASE_URL}/public/album-images/img11.jpg`,
         desc:"Your weekly update of the most played tracks",
         bgColor:"#234e52",
         tags: ["music"]
@@ -118,7 +100,7 @@ export const albumsData = [
     {   
         id:5,
         name: "Happy Favorites",
-        image: img15,
+        image: `${STORAGE_BASE_URL}/public/album-images/img15.jpg`,
         desc:"Your weekly update of the most played tracks",
         bgColor:"#744210",
         tags: ["music"]
@@ -126,7 +108,7 @@ export const albumsData = [
     {   
         id:6,
         name: "Tech Talk Daily",
-        image: img13,
+        image: `${STORAGE_BASE_URL}/public/album-images/img13.jpg`,
         desc:"Latest technology discussions and insights",
         bgColor:"#1a365d",
         tags: ["podcasts"]
@@ -134,102 +116,9 @@ export const albumsData = [
     {   
         id:7,
         name: "Comedy Hour",
-        image: img6,
+        image: `${STORAGE_BASE_URL}/public/album-images/img6.jpg`,
         desc:"Laugh out loud with the best comedians",
         bgColor:"#553c9a",
-        tags: ["podcasts"]
-    }
-]
-
-export const songsData = [
-    {
-        id:0,
-        name: "Song One",
-        image: img1,
-        file:song1,
-        desc:"Put a smile on your face with these happy tunes",
-        duration:"3:00",
-        tags: ["music"]
-    },
-    {
-        id:1,
-        name: "Song Two",
-        image: img2,
-        file:song2,
-        desc:"Put a smile on your face with these happy tunes",
-        duration:"2:20",
-        tags: ["music"]
-    },
-    {
-        id:2,
-        name: "Song Three",
-        image: img3,
-        file:song3,
-        desc:"Put a smile on your face with these happy tunes",
-        duration:"2:32",
-        tags: ["music"]
-    },
-    {
-        id:3,
-        name: "Song Four",
-        image: img4,
-        file:song1,
-        desc:"Put a smile on your face with these happy tunes",
-        duration:"2:50",
-        tags: ["music"]
-    },
-    {
-        id:4,
-        name: "Song Five",
-        image: img5,
-        file:song2,
-        desc:"Put a smile on your face with these happy tunes",
-        duration:"3:10",
-        tags: ["music"]
-    },
-    {
-        id:5,
-        name: "Song Six",
-        image: img14,
-        file:song3,
-        desc:"Put a smile on your face with these happy tunes",
-        duration:"2:45",
-        tags: ["music"]
-    },
-    {
-        id:6,
-        name: "Song Seven",
-        image: img7,
-        file:song1,
-        desc:"Put a smile on your face with these happy tunes",
-        duration:"2:18",
-        tags: ["music"]
-    },
-    {
-        id:7,
-        name: "Song Eight",
-        image: img12,
-        file:song2,
-        desc:"Put a smile on your face with these happy tunes",
-        duration:"2:35",
-        tags: ["music"]
-    },
-    {
-        id:8,
-        name: "Tech News Today",
-        image: img13,
-        file:song1,
-        desc:"Latest technology updates and discussions",
-        duration:"45:20",
-        tags: ["podcasts"]
-    },
-    {
-        id:9,
-        name: "Comedy Central",
-        image: img6,
-        file:song2,
-        desc:"Best comedy content from around the world",
-        duration:"32:15",
         tags: ["podcasts"]
     }
 ]
