@@ -19,8 +19,10 @@ const Navbar = () => {
         <img className='w-9' src={assets.arrow} alt="" />
       </div>
       <div className='flex items-center gap-4'>
-        <img className='w-10' src={assets.spotify_logo} alt="" />
-        <p className='text-white'>Spotify</p>
+        <img className='w-10' src={assets.thmusic_logo} alt="" />
+        <p className='text-white'>
+          T&H Music
+        </p>
       </div>
       <div className='flex items-center gap-4'>
         <img className='w-5' src={assets.bell} alt="" />

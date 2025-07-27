@@ -21,7 +21,7 @@ import queue_icon from './queue.png'
 import volume_icon from './volume.png'
 import arrow_right from './right_arrow.png'
 import arrow_left from './left_arrow.png'
-import spotify_logo from './spotify_logo.png'
+import thmusic_logo from './thmusic.webp'
 import clock_icon from './clock_icon.png'
 
 // Remove image and song imports as we'll use string URLs
@@ -52,7 +52,7 @@ export const assets = {
     pause_icon,
     arrow_left,
     arrow_right,
-    spotify_logo,
+    thmusic_logo,
     clock_icon
 }
 

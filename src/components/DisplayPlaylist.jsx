@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { PlaylistContext } from '../context/PlaylistContext';
@@ -11,13 +11,35 @@ const DisplayPlaylist = () => {
   const { getPlaylistById, getPlaylistDuration, formatDuration, removeSongFromPlaylist } = useContext(PlaylistContext);
   const { playWithId } = useContext(PlayerContext);
 
-  const playlist = getPlaylistById(id);
+  const [playlist, setPlaylist] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!playlist) {
-      navigate('/');
+    if (playlist) {
+      document.title = `${playlist.name} - T&H Music`;
     }
-  }, [playlist, navigate]);
+    // Cleanup function to reset title when component unmounts
+    return () => {
+      document.title = 'T&H Music - Web Player';
+    };
+  }, [playlist]);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        setLoading(true);
+        const fetchedPlaylist = getPlaylistById(id);
+        setPlaylist(fetchedPlaylist);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    load();
+  }, [id, getPlaylistById]);
 
   if (!playlist) {
     return null;
@@ -55,8 +77,10 @@ const DisplayPlaylist = () => {
           <h2 className='text-5xl font-bold mb-4 md:text-7xl'>{playlist.name}</h2>
           <h4 className='text-gray-300'>{playlist.description}</h4>
           <p className='mt-1 text-gray-300'>
-            <img className='inline-block w-5' src={assets.spotify_logo} alt="" />
-            <b className='text-white'>Spotify</b>
+            <img className='inline-block w-5' src={assets.thmusic_logo} alt="" />
+            <b className='text-white'>
+              T&H Music
+            </b>
             • {songCount} {songCount === 1 ? 'song' : 'songs'}
             • <b>{totalDuration}</b>
           </p>

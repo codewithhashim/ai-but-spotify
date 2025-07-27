@@ -32,7 +32,7 @@ const Display = () => {
     },[isAlbum,isPlaylist,isSong,bgColor])
 
     return (
-        <div ref={displayRef} className='flex-1 h-full overflow-auto'>
+        <div ref={displayRef} className='flex-1 h-full overflow-auto p-4'>
             <Routes>
                 <Route path='/' element={<DisplayHome />} />
                 <Route path='/album/:id' element={<DisplayAlbum />} />

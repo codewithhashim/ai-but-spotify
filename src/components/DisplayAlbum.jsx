@@ -21,6 +21,16 @@ const DisplayAlbum = () => {
     const [activeDropdown, setActiveDropdown] = useState(null);
 
     useEffect(() => {
+        if (album) {
+            document.title = `${album.name} - T&H Music`;
+        }
+        // Cleanup function to reset title when component unmounts
+        return () => {
+            document.title = 'T&H Music - Web Player';
+        };
+    }, [album]);
+
+    useEffect(() => {
         const load = async () => {
             try {
                 setLoading(true);
@@ -86,8 +96,8 @@ const DisplayAlbum = () => {
                 <h2 className='text-5xl font-bold mb-4 md:text-7xl'>{album.name}</h2>
                     <h4 className='text-gray-300'>{album.description}</h4>
                     <p className='mt-1 text-gray-300'>
-                    <img className='inline-block w-5' src={assets.spotify_logo} alt="" />
-                        <b className='text-white'>Spotify</b>
+                    <img className='inline-block w-5' src={assets.thmusic_logo} alt="" />
+                        <b className='text-white'>T&H Music</b>
                         • <b>Album</b>
                 </p>
             </div>

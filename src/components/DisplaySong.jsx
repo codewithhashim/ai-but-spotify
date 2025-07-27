@@ -15,6 +15,16 @@ const DisplaySong = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [song, setSong] = useState(null)
 
+  useEffect(() => {
+    if (song) {
+        document.title = `${song.name} by ${song.artist} - T&H Music`;
+    }
+    // Cleanup function to reset title when component unmounts
+    return () => {
+        document.title = 'T&H Music - Web Player';
+    };
+  }, [song]);
+
   useEffect(()=>{
      (async ()=>{
         const s = await getSongById(parseInt(id))
@@ -52,8 +62,10 @@ const DisplaySong = () => {
           <h2 className="text-5xl font-bold mb-4 md:text-7xl">{song.name}</h2>
           <h4 className="text-gray-300">{song.desc}</h4>
           <p className="mt-1 text-gray-300">
-            <img className="inline-block w-5" src={assets.spotify_logo} alt="" />
-            <b className="text-white">Spotify</b>
+            <img className="inline-block w-5" src={assets.thmusic_logo} alt="" />
+            <b className="text-white">
+              T&H Music
+            </b>
             • <b>{song.duration}</b>
           </p>
         </div>

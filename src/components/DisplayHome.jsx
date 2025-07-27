@@ -4,6 +4,7 @@ import Navbar from './Navbar'
 import AlbumItem from './AlbumItem'
 import SongItem from './SongItem'
 import { dataService } from '../services/dataService'
+import { useData } from '../context/DataContext'
 
 const DisplayHome = () => {
   const { activeFilter } = useFilter();
@@ -12,6 +13,8 @@ const DisplayHome = () => {
   const [songs, setSongs] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+
+  const { albums: contextAlbums, songs: contextSongs } = useData()
 
   // Fetch albums and songs from Supabase on mount
   useEffect(() => {
@@ -35,6 +38,10 @@ const DisplayHome = () => {
 
     loadData()
   }, [])
+
+  useEffect(() => {
+    document.title = 'T&H Music - Web Player';
+  }, []);
 
   // Filter albums and songs based on active filter
   const isPodcast = (tags) => (tags ?? []).includes('podcasts')
